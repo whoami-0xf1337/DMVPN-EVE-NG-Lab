@@ -14,7 +14,7 @@ This repository contains my Dynamic Multipoint VPN (DMVPN) Phase 2 lab built on 
 - Branch C LAN: `192.168.2.0/24`
 
 
-![Topology](./Topology-Diagram.png)
+![Topology](./Topology-Diagram.PNG)
 
 ## What I Practiced
 - DMVPN Phase 2 (mGRE + NHRP) 
