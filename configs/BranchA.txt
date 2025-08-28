@@ -1,1 +1,93 @@
-branch a
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+!
+hostname Branch-A
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+ip cef    
+no ipv6 cef
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!         
+!
+!
+interface Tunnel0
+ ip address 172.16.10.2 255.255.255.0
+ no ip redirects
+ ip nhrp authentication cisco123
+ ip nhrp map multicast 10.1.1.2
+ ip nhrp map 172.16.10.1 10.1.1.2
+ ip nhrp network-id 1
+ ip nhrp nhs 172.16.10.1
+ tunnel source FastEthernet0/0
+ tunnel mode gre multipoint
+ tunnel key 123
+!
+interface FastEthernet0/0
+ ip address 20.1.1.2 255.255.255.0
+ duplex full
+!
+interface FastEthernet1/0
+ ip address 192.168.1.1 255.255.255.0
+ duplex full
+!
+!         
+router eigrp 100
+ network 172.16.10.0 0.0.0.255
+ network 192.168.1.0
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 20.1.1.1
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+end
